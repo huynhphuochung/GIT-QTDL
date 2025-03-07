@@ -128,13 +128,13 @@
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <TextField  layoutX="355.0" layoutY="403.0" prefHeight="26.0" prefWidth="223.0" />
+                                        <TextField fx:id="hsluongtextfild" layoutX="355.0" layoutY="403.0" prefHeight="26.0" prefWidth="223.0" />
                                         <Label layoutX="20.0" layoutY="485.0" text="Địa chỉ">
                                             <font>
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <TextField  layoutX="92.0" layoutY="480.0" prefHeight="26.0" prefWidth="382.0" />
+                                        <TextField fx:id="diachitextfield" layoutX="92.0" layoutY="480.0" prefHeight="26.0" prefWidth="382.0" />
                                         <Label layoutX="20.0" layoutY="527.0" text="Hộp đồng">
                                             <font>
                                                 <Font name="Tahoma Bold" size="13.0" />
@@ -145,7 +145,7 @@
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>
                                         </Button>
-                                        <Button layoutX="238.0" layoutY="522.0" mnemonicParsing="false" text="Lưu thây đổi" >
+                                        <Button layoutX="238.0" layoutY="522.0" mnemonicParsing="false" text="Lưu thây đổi" onAction="#onUpdate">
                                             <font>
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>

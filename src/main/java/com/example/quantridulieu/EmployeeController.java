@@ -40,6 +40,10 @@ public class EmployeeController {
     private TextField chucvutextfield;
     @FXML
     private TextField ngaysinhtextfield;
+    @FXML
+    private  TextField diachitextfield;
+    @FXML
+    private TextField hsluongtextfild;
 
     @FXML
     private void initialize() {
@@ -107,7 +111,35 @@ public class EmployeeController {
         }
     }
 
+    @FXML
+    private void onUpdate(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(idtextfield.getText());
+            String name = hotentextfield.getText();
+            String birthDate = ngaysinhtextfield.getText();
+            String gender = gioitinhtextfield.getText();
+            String phone = sdttextfield.getText();
+            String address = diachitextfield.getText();
+            String status = trangthaitextfield.getText();
 
+            myjbdc.updateEmployee(id, name, birthDate, gender, phone, address, status);
 
+            employeeTableView.setItems(myjbdc.getEmployeeList());
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thành công");
+            alert.setHeaderText(null);
+            alert.setContentText("Cập nhật nhân viên thành công!");
+            alert.showAndWait();
+
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setHeaderText("Dữ liệu không hợp lệ");
+            alert.setContentText("Vui lòng nhập đúng định dạng.");
+            alert.showAndWait();
+        }
+    }
 
 }
+
