@@ -13,8 +13,7 @@ import javafx.stage.Stage;
 import java.text.SimpleDateFormat;
 
 public class EmployeeController {
-    @FXML
-    private Button viewButton; // Nút "Xem danh sách"
+
     @FXML
     private TableView<Employee> employeeTableView;
     @FXML
@@ -108,36 +107,7 @@ public class EmployeeController {
         }
     }
 
-    @FXML
-    public void updateEmployee() {
-        SimpleStringProperty id = new SimpleStringProperty(idtextfield.getText());
-        SimpleStringProperty name = new SimpleStringProperty(hotentextfield.getText());
-        SimpleStringProperty gioiwtinh = new SimpleStringProperty(gioitinhtextfield.getText());
-        SimpleStringProperty trangthai = new SimpleStringProperty(trangthaitextfield.getText()) ;
-        SimpleStringProperty chucvu = new SimpleStringProperty(chucvutextfield.getText());
-        SimpleStringProperty ngaysinh = new SimpleStringProperty(ngay)
 
-
-        int sdt;
-        try {
-            sdt = Integer.parseInt(sdttextfield.getText());
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Số điện thoại không hợp lệ!");
-            alert.show();
-            return;
-        }
-
-        boolean success = myjbdc.updateEmployee(id, name, sdt, gioitinh, trangthai, chucvu);
-
-        if (success) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Cập nhật thành công!");
-            alert.show();
-            employeeTableView.setItems(myjbdc.getEmployeeList()); // Cập nhật lại bảng
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Cập nhật thất bại!");
-            alert.show();
-        }
-    }
 
 
 }
