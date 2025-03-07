@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.text.SimpleDateFormat;
+
 public class EmployeeController {
     @FXML
     private Button viewButton; // Nút "Xem danh sách"
@@ -36,6 +38,8 @@ public class EmployeeController {
     private TextField hotentextfield;
     @FXML
     private TextField chucvutextfield;
+    @FXML
+    private TextField ngaysinhtextfield;
 
     @FXML
     private void initialize() {
@@ -45,6 +49,7 @@ public class EmployeeController {
      gioitinhcolumn.setCellValueFactory(cellData -> cellData.getValue().gioitinhnvProperty() );
      trangthaicolumn.setCellValueFactory(cellData -> cellData.getValue().trangthaiProperty() );
      sdtcolumn.setCellValueFactory(cellData -> cellData.getValue().sdtProperty().asObject());
+
         ObservableList<Employee> employeeList = myjbdc.getEmployeeList();
      employeeTableView.setItems(employeeList);
         employeeTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -56,6 +61,7 @@ public class EmployeeController {
                 sdttextfield.setText(String.valueOf(newValue.getsdt().get()));
                 hotentextfield.setText(newValue.gethotennv().get());
                 chucvutextfield.setText(newValue.getchucvu().get());
+                ngaysinhtextfield.setText(newValue.getNgaysinh().get());
             }
         });
         if (!employeeList.isEmpty()) {
@@ -65,7 +71,6 @@ public class EmployeeController {
             gioitinhtextfield.setText(firstEmployee.getgioitinhnnv().get());
             sdttextfield.setText(String.valueOf(firstEmployee.getsdt().get()));
             hotentextfield.setText(firstEmployee.gethotennv().get());
-
             // Tự động chọn nhân viên đầu tiên trong TableView
             employeeTableView.getSelectionModel().select(0);
         }

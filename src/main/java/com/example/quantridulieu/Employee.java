@@ -2,6 +2,7 @@ package com.example.quantridulieu;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import java.util.Date;
 
 // hàm xây dựng
 public class Employee {
@@ -10,8 +11,9 @@ public class Employee {
     private SimpleIntegerProperty sdt;
     private SimpleStringProperty gioitinh;
     private SimpleStringProperty trangthai;
-    private SimpleStringProperty chucvu;
-    public Employee(String idnhanvien, String hotennv, int sdt , String gioitinh, String trangthai, String chucvu   )
+    private SimpleStringProperty  chucvu;
+    private SimpleStringProperty  ngaysinh;
+    public Employee(String idnhanvien, String hotennv, int sdt , String gioitinh, String trangthai, String chucvu, String ngaysinh  )
     {
         this.idnhanvien= new SimpleStringProperty(idnhanvien);
         this.hotennv= new SimpleStringProperty(hotennv);
@@ -19,6 +21,7 @@ public class Employee {
         this.gioitinh=new SimpleStringProperty(gioitinh);
         this.trangthai=new SimpleStringProperty(trangthai);
         this.chucvu= new SimpleStringProperty(chucvu);
+        this.ngaysinh = new SimpleStringProperty (ngaysinh);
     }
     //idnhan vien
     public SimpleStringProperty idnvProperty() {
@@ -96,6 +99,13 @@ public class Employee {
     public void setchucvu(String chucvu)
     {
         this.chucvu.set(chucvu);
+    }
+    public SimpleStringProperty  getNgaysinh() {
+        return ngaysinh;
+    }
+
+    public void setNgaysinh(SimpleStringProperty  ngaysinh) {
+        this.ngaysinh = ngaysinh;
     }
 
 
