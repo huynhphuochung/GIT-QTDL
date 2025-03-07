@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.QuadCurve?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="800.0" style="-fx-background-radius: 5px;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quantridulieu.LoginController">
+   <children>
+      <QuadCurve controlX="410.7320861816406" controlY="-335.3999938964844" endX="769.9320678710938" endY="3.27325439453125" fill="#73b4f1" layoutX="36.0" layoutY="617.0" startX="-37.000003814697266" startY="3.27325439453125" stroke="WHITE" strokeType="INSIDE" />
+      <TextField fx:id="usernameField" layoutX="400.0" layoutY="212.0" prefHeight="50.0" prefWidth="243.0" />
+      <AnchorPane layoutX="114.0" layoutY="212.0" prefHeight="62.0" prefWidth="218.0" style="-fx-background-color: #73B4F1; -fx-background-radius: 10px;">
+         <children>
+            <Label layoutX="80.0" layoutY="17.0" text="User ID">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="114.0" layoutY="310.0" prefHeight="62.0" prefWidth="218.0" style="-fx-background-color: #73B4F1; -fx-background-radius: 10px;">
+         <children>
+            <Label layoutX="71.0" layoutY="17.0" text="Password">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <PasswordField fx:id="passwordField" layoutX="400.0" layoutY="316.0" prefHeight="50.0" prefWidth="243.0" />
+      <Button fx:id="loginButton" layoutX="321.0" layoutY="489.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="43.0" prefWidth="157.0" style="-fx-background-color: #E9EBED;" text="Đăng Nhập" />
+      <QuadCurve controlX="303.2001953125" controlY="333.3999938964844" endX="756.2000122070312" endY="2.999997615814209" fill="#73b4f1" layoutX="50.0" layoutY="-3.0" startX="-50.000003814697266" startY="2.999999523162842" stroke="WHITE" strokeType="INSIDE" />
+      <AnchorPane layoutX="237.0" layoutY="38.0" prefHeight="51.0" prefWidth="381.0" style="-fx-background-color: #E9EBED; -fx-background-radius: 10px;">
+         <children>
+            <Label layoutX="18.0" layoutY="8.0" prefHeight="43.0" prefWidth="345.0" text="HỆ THỐNG QUẢN LÝ NHÂN SỰ">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="131.0" fitWidth="127.0" layoutX="14.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
+
+      </ImageView>
+      <ImageView fitHeight="133.0" fitWidth="144.0" layoutX="659.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+
+      </ImageView>
+      <ImageView fitHeight="119.0" fitWidth="121.0" layoutX="684.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/partners.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="119.0" fitWidth="127.0" layoutX="8.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/team.png" />
+         </image>
+      </ImageView>
+
+   </children>
+</AnchorPane>
