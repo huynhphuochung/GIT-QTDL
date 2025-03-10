@@ -13,6 +13,7 @@ public class Employee {
     private SimpleStringProperty trangthai;
     private SimpleStringProperty  chucvu;
     private SimpleStringProperty  ngaysinh;
+
     public Employee(String idnhanvien, String hotennv, int sdt , String gioitinh, String trangthai, String chucvu, String ngaysinh  )
     {
         this.idnhanvien= new SimpleStringProperty(idnhanvien);

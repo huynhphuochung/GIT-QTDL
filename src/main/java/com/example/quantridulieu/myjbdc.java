@@ -1,14 +1,23 @@
 package com.example.quantridulieu;
 
-import java.sql.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class myjbdc {
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.sql.*;
 
+public class myjbdc {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/quanlynhansu";
     private static final String USER = "root";
     private static final String PASSWORD = "123456789";
+    private static final String IMAGE_DIRECTORY = "src/main/resources/images/"; // Thư mục lưu ảnh
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
 
     public static ObservableList<Employee> getEmployeeList() {
         ObservableList<Employee> employeeList = FXCollections.observableArrayList();
@@ -36,31 +45,49 @@ public class myjbdc {
         return employeeList;
     }
 
-    public static void updateEmployee(int id, String name, String birthDate, String gender,
-                                      String phone, String address, String status) {
-        String sql = "{CALL UpdateNhanVien(?, ?, ?, ?, ?, ?, ?)}";  // Chỉ có 7 tham số
+    public void updateEmployee(int maNhanVien, String hoTen, String ngaySinh,
+                               String gioiTinh, String soDienThoai, String diaChi,
+                               String trangThai, String hinhAnh) {
+        String sql = "CALL UpdateNhanVien(?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             CallableStatement stmt = conn.prepareCall(sql)) {
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, id);
-            stmt.setString(2, name);
-            stmt.setDate(3, Date.valueOf(birthDate));
-            stmt.setString(4, gender);
-            stmt.setString(5, phone);
-            stmt.setString(6, address);
-            stmt.setString(7, status);
+            stmt.setInt(1, maNhanVien);
+            stmt.setString(2, hoTen);
+            stmt.setString(3, ngaySinh);
+            stmt.setString(4, gioiTinh);
+            stmt.setString(5, soDienThoai);
+            stmt.setString(6, diaChi);
+            stmt.setString(7, trangThai);
+            stmt.setString(8, hinhAnh);
 
-            int rowsUpdated = stmt.executeUpdate();
-            if (rowsUpdated > 0) {
-                System.out.println("Cập nhật nhân viên thành công!");
-            } else {
-                System.out.println("Không tìm thấy nhân viên để cập nhật.");
-            }
+            stmt.executeUpdate();
+            System.out.println("Cập nhật nhân viên thành công!");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    public static String uploadImage(File imageFile) {
+        if (imageFile == null) {
+            return null; // Nếu không có ảnh, trả về null
+        }
 
+        File directory = new File(IMAGE_DIRECTORY);
+        if (!directory.exists()) {
+            directory.mkdirs(); // Tạo thư mục nếu chưa có
+        }
+
+        String newFileName = System.currentTimeMillis() + "_" + imageFile.getName(); // Đổi tên ảnh tránh trùng
+        File destinationFile = new File(directory, newFileName);
+
+        try {
+            Files.copy(imageFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            return IMAGE_DIRECTORY + newFileName; // Trả về đường dẫn ảnh mới
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

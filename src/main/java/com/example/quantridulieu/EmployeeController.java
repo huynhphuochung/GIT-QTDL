@@ -8,7 +8,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 
 import java.text.SimpleDateFormat;
 
@@ -44,6 +52,16 @@ public class EmployeeController {
     private  TextField diachitextfield;
     @FXML
     private TextField hsluongtextfild;
+    @FXML
+    private ImageView employeeImageView;
+    @FXML
+    private Button uploadImageButton;
+    @FXML
+    private String selectedImagePath = null;  // Đường dẫn ảnh đã chọn
+    @FXML
+    private myjbdc myjbdc = new myjbdc(); // Khởi tạo đối tượng kết nối
+
+
 
     @FXML
     private void initialize() {
@@ -112,6 +130,44 @@ public class EmployeeController {
     }
 
     @FXML
+    private void onUploadImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(null);
+
+        if (file != null) {
+            try {
+                // Đường dẫn lưu ảnh trong dự án
+                String destDirectory = "src/main/resources/image/";
+                File destFolder = new File(destDirectory);
+
+                // Tạo thư mục nếu chưa tồn tại
+                if (!destFolder.exists()) {
+                    destFolder.mkdirs();
+                }
+
+                // Tạo tên file mới
+                String newFileName = System.currentTimeMillis() + "_" + file.getName();
+                File destFile = new File(destFolder, newFileName);
+
+                // Copy file vào thư mục lưu ảnh
+                Files.copy(file.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                // Lưu đường dẫn vào biến `selectedImagePath`
+                selectedImagePath = "images/" + newFileName;  // Chỉ lưu đường dẫn tương đối
+
+                // Hiển thị ảnh
+                Image image = new Image(destFile.toURI().toString());
+                employeeImageView.setImage(image);
+
+                System.out.println("Ảnh đã lưu tại: " + selectedImagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
     private void onUpdate(ActionEvent event) {
         try {
             int id = Integer.parseInt(idtextfield.getText());
@@ -122,7 +178,7 @@ public class EmployeeController {
             String address = diachitextfield.getText();
             String status = trangthaitextfield.getText();
 
-            myjbdc.updateEmployee(id, name, birthDate, gender, phone, address, status);
+            myjbdc.updateEmployee(id, name, birthDate, gender, phone, address, status, selectedImagePath);
 
             employeeTableView.setItems(myjbdc.getEmployeeList());
 
