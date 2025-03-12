@@ -15,7 +15,6 @@ public class Employee {
     private SimpleStringProperty trangthai;
     private SimpleStringProperty  chucvu;
     private SimpleStringProperty  ngaysinh;
-
     private SimpleStringProperty  diachi;
     private SimpleDoubleProperty heluong;
     private SimpleStringProperty hinhanh;
@@ -143,8 +142,8 @@ public class Employee {
     {
         this.heluong.set(heluong);
     }
-//hinh anh
-public SimpleStringProperty gethinhanh() {
+    //hinh anh
+    public SimpleStringProperty gethinhanh() {
     return hinhanh;
 }
 

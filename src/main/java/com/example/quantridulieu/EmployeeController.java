@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
@@ -18,9 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.text.SimpleDateFormat;
 
 public class EmployeeController {
@@ -52,7 +49,6 @@ public class EmployeeController {
     @FXML
     private TextField ngaysinhtextfield;
     @FXML
-
     private TextField diachitextfield;
     @FXML
     private TextField hesoluongtextfield;
@@ -65,22 +61,19 @@ public class EmployeeController {
     @FXML
     private myjbdc myjbdc = new myjbdc(); // Khởi tạo đối tượng kết nối
 
-
-
     @FXML
     private void initialize() {
-        // Gán dữ liệu cho các cột của TableView
-     idcolumn.setCellValueFactory(cellData -> cellData.getValue().idnvProperty() );
-     namecolumn.setCellValueFactory(cellData -> cellData.getValue().hotennvProperty() );
-     gioitinhcolumn.setCellValueFactory(cellData -> cellData.getValue().gioitinhnvProperty() );
-     trangthaicolumn.setCellValueFactory(cellData -> cellData.getValue().trangthaiProperty() );
-     sdtcolumn.setCellValueFactory(cellData -> cellData.getValue().sdtProperty().asObject());
+        idcolumn.setCellValueFactory(cellData -> cellData.getValue().idnvProperty());
+        namecolumn.setCellValueFactory(cellData -> cellData.getValue().hotennvProperty());
+        gioitinhcolumn.setCellValueFactory(cellData -> cellData.getValue().gioitinhnvProperty());
+        trangthaicolumn.setCellValueFactory(cellData -> cellData.getValue().trangthaiProperty());
+        sdtcolumn.setCellValueFactory(cellData -> cellData.getValue().sdtProperty().asObject());
 
         ObservableList<Employee> employeeList = myjbdc.getEmployeeList();
-     employeeTableView.setItems(employeeList);
+        employeeTableView.setItems(employeeList);
+
         employeeTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                // Cập nhật thông tin trong các TextField khi người dùng chọn nhân viên
                 idtextfield.setText(newValue.getidnv().get());
                 trangthaitextfield.setText(newValue.gettrangthainhnnv().get());
                 gioitinhtextfield.setText(newValue.getgioitinhnnv().get());
@@ -90,41 +83,88 @@ public class EmployeeController {
                 ngaysinhtextfield.setText(newValue.getNgaysinh().get());
                 diachitextfield.setText(newValue.getdiachi().get());
                 hesoluongtextfield.setText(String.valueOf(newValue.getheluong().get()));
-                // Giả sử bạn đã có đường dẫn hình ảnh (đã lấy từ cơ sở dữ liệu)
-                String selectedImagePath = "C:/Users/huynh/IdeaProjects/QUANTRIDULIEU/images/hinh_anh1.png";
 
-// Chuyển đường dẫn thành đối tượng Image
-                Image image = new Image("file:" + selectedImagePath);
-
-// Hiển thị hình ảnh trong ImageView
-                imageurl.setImage(image);
-
+                // Load ảnh
+                String selectedImagePath = newValue.gethinhanh().get();
+                if (selectedImagePath != null && !selectedImagePath.isEmpty()) {
+                    File imageFile = new File("src/main/resources/" + selectedImagePath);
+                    if (imageFile.exists()) {
+                        Image image = new Image(imageFile.toURI().toString());
+                        imageurl.setImage(image);
+                    } else {
+                        System.out.println("⚠ Ảnh không tồn tại: " + imageFile.getAbsolutePath());
+                        imageurl.setImage(null);
+                    }
+                } else {
+                    imageurl.setImage(null);
+                }
             }
         });
-        if (!employeeList.isEmpty()) {
-            Employee firstEmployee = employeeList.get(0); // Lấy nhân viên đầu tiên
-            idtextfield.setText(firstEmployee.getidnv().get());
-            trangthaitextfield.setText(firstEmployee.gettrangthainhnnv().get());
-            gioitinhtextfield.setText(firstEmployee.getgioitinhnnv().get());
-            sdttextfield.setText(String.valueOf(firstEmployee.getsdt().get()));
-            hotentextfield.setText(firstEmployee.gethotennv().get());
-            ngaysinhtextfield.setText(firstEmployee.getNgaysinh().get());
-            diachitextfield.setText(firstEmployee.getdiachi().get());
-            hesoluongtextfield.setText(String.valueOf(firstEmployee.getheluong().get()));
-            // Tự động chọn nhân viên đầu tiên trong TableView
-            employeeTableView.getSelectionModel().select(0);
+    }
+
+        @FXML
+    private void onUploadImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(null);
+
+        if (file != null) {
+            try {
+                String destDirectory = "src/main/resources/image/";
+                File destFolder = new File(destDirectory);
+                if (!destFolder.exists()) {
+                    destFolder.mkdirs();
+                }
+
+                String newFileName = System.currentTimeMillis() + "_" + file.getName();
+                File destFile = new File(destFolder, newFileName);
+
+                Files.copy(file.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                selectedImagePath = "image/" + newFileName; // Lưu đường dẫn tương đối
+
+                Image image = new Image(destFile.toURI().toString());
+                imageurl.setImage(image);
+
+                System.out.println("Ảnh đã lưu tại: " + selectedImagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    @FXML
+    private void onUpdate(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(idtextfield.getText());
+            String name = hotentextfield.getText();
+            String birthDate = ngaysinhtextfield.getText();
+            String gender = gioitinhtextfield.getText();
+            String phone = sdttextfield.getText();
+            String address = diachitextfield.getText();
+            String status = trangthaitextfield.getText();
 
-    private Stage stage;  // Stage của ứng dụng
-    public void setStage(Stage stage) {
-        this.stage = stage;
+            // Kiểm tra nếu chưa có ảnh mới thì giữ ảnh cũ
+            if (selectedImagePath == null || selectedImagePath.isEmpty()) {
+                selectedImagePath = employeeTableView.getSelectionModel().getSelectedItem().gethinhanh().get();
+            }
+
+            myjbdc.updateEmployee(id, name, birthDate, gender, phone, address, status, selectedImagePath);
+            employeeTableView.setItems(myjbdc.getEmployeeList());
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thành công");
+            alert.setHeaderText(null);
+            alert.setContentText("Cập nhật nhân viên thành công!");
+            alert.showAndWait();
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setHeaderText("Dữ liệu không hợp lệ");
+            alert.setContentText("Vui lòng nhập đúng định dạng.");
+            alert.showAndWait();
+        }
     }
 
-
-    // Hàm để xử lý sự kiện đăng xuất
-    @FXML
     public void onLogout(ActionEvent event) {
         // Xử lý đăng xuất và mở lại màn hình đăng nhập
         try {
@@ -146,75 +186,4 @@ public class EmployeeController {
             alert.showAndWait();
         }
     }
-
-    @FXML
-    private void onUploadImage() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
-        File file = fileChooser.showOpenDialog(null);
-
-        if (file != null) {
-            try {
-                // Đường dẫn lưu ảnh trong dự án
-                String destDirectory = "src/main/resources/image/";
-                File destFolder = new File(destDirectory);
-
-                // Tạo thư mục nếu chưa tồn tại
-                if (!destFolder.exists()) {
-                    destFolder.mkdirs();
-                }
-
-                // Tạo tên file mới
-                String newFileName = System.currentTimeMillis() + "_" + file.getName();
-                File destFile = new File(destFolder, newFileName);
-
-                // Copy file vào thư mục lưu ảnh
-                Files.copy(file.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                // Lưu đường dẫn vào biến `selectedImagePath`
-                selectedImagePath = "images/" + newFileName;  // Chỉ lưu đường dẫn tương đối
-
-                // Hiển thị ảnh
-                Image image = new Image(destFile.toURI().toString());
-                imageurl.setImage(image);
-
-                System.out.println("Ảnh đã lưu tại: " + selectedImagePath);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @FXML
-    private void onUpdate(ActionEvent event) {
-        try {
-            int id = Integer.parseInt(idtextfield.getText());
-            String name = hotentextfield.getText();
-            String birthDate = ngaysinhtextfield.getText();
-            String gender = gioitinhtextfield.getText();
-            String phone = sdttextfield.getText();
-            String address = diachitextfield.getText();
-            String status = trangthaitextfield.getText();
-
-            myjbdc.updateEmployee(id, name, birthDate, gender, phone, address, status, selectedImagePath);
-
-            employeeTableView.setItems(myjbdc.getEmployeeList());
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thành công");
-            alert.setHeaderText(null);
-            alert.setContentText("Cập nhật nhân viên thành công!");
-            alert.showAndWait();
-
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Lỗi");
-            alert.setHeaderText("Dữ liệu không hợp lệ");
-            alert.setContentText("Vui lòng nhập đúng định dạng.");
-            alert.showAndWait();
-        }
-    }
-
 }
-

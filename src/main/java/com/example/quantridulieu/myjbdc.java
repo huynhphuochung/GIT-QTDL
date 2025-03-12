@@ -12,7 +12,7 @@ import java.sql.*;
 public class myjbdc {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/quanlynhansu";
     private static final String USER = "root";
-    private static final String PASSWORD = "123456";
+    private static final String PASSWORD = "123456789";
     private static final String IMAGE_DIRECTORY = "src/main/resources/images/"; // Thư mục lưu ảnh
 
     public static Connection getConnection() throws SQLException {
@@ -36,7 +36,7 @@ public class myjbdc {
                 String chucvu = rs.getString("ma_chuc_vu");
                 String ngaysinh = rs.getString("ngay_sinh");
                 String diachi = rs.getString("dia_chi");
-                Double heluong= rs.getDouble("he_so_luong");
+                double heluong = rs.getDouble("he_so_luong");
                 String hinhanh =rs.getString("hinh_anh");
                 Employee employee = new Employee(id, name, sdt, gioitinhnv, trangthai, chucvu, ngaysinh, diachi, heluong, hinhanh);
                 employeeList.add(employee);
