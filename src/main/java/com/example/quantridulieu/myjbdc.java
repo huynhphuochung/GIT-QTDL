@@ -37,7 +37,7 @@ public class myjbdc {
                 String ngaysinh = rs.getString("ngay_sinh");
                 String diachi = rs.getString("dia_chi");
                 Double heluong= rs.getDouble("he_so_luong");
-                byte[] hinhanh=rs.getBytes("hinh_anh");
+                String hinhanh =rs.getString("hinh_anh");
                 Employee employee = new Employee(id, name, sdt, gioitinhnv, trangthai, chucvu, ngaysinh, diachi, heluong, hinhanh);
                 employeeList.add(employee);
             }
@@ -71,25 +71,27 @@ public class myjbdc {
             e.printStackTrace();
         }
     }
-    public static String uploadImage(File imageFile) {
-        if (imageFile == null) {
-            return null; // Nếu không có ảnh, trả về null
-        }
 
-        File directory = new File(IMAGE_DIRECTORY);
-        if (!directory.exists()) {
-            directory.mkdirs(); // Tạo thư mục nếu chưa có
-        }
 
-        String newFileName = System.currentTimeMillis() + "_" + imageFile.getName(); // Đổi tên ảnh tránh trùng
-        File destinationFile = new File(directory, newFileName);
-
-        try {
-            Files.copy(imageFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            return IMAGE_DIRECTORY + newFileName; // Trả về đường dẫn ảnh mới
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    public static String uploadImage(File imageFile) {
+//        if (imageFile == null) {
+//            return null; // Nếu không có ảnh, trả về null
+//        }
+//
+//        File directory = new File(IMAGE_DIRECTORY);
+//        if (!directory.exists()) {
+//            directory.mkdirs(); // Tạo thư mục nếu chưa có
+//        }
+//
+//        String newFileName = System.currentTimeMillis() + "_" + imageFile.getName(); // Đổi tên ảnh tránh trùng
+//        File destinationFile = new File(directory, newFileName);
+//
+//        try {
+//            Files.copy(imageFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+//            return IMAGE_DIRECTORY + newFileName; // Trả về đường dẫn ảnh mới
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 }

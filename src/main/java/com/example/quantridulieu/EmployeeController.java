@@ -58,7 +58,6 @@ public class EmployeeController {
     private TextField hesoluongtextfield;
     @FXML
     private ImageView imageurl;
-    private TextField hsluongtextfild;
     @FXML
     private Button uploadImageButton;
     @FXML
@@ -91,12 +90,14 @@ public class EmployeeController {
                 ngaysinhtextfield.setText(newValue.getNgaysinh().get());
                 diachitextfield.setText(newValue.getdiachi().get());
                 hesoluongtextfield.setText(String.valueOf(newValue.getheluong().get()));
-                // chuyển hình ảnh từ byte thành image
-                byte[] imageBytes = newValue.gethinhanh();
-                ByteArrayInputStream inputStream = new ByteArrayInputStream(imageBytes);
-                Image image = new Image(inputStream);
-                imageurl.setImage(image);
+                // Giả sử bạn đã có đường dẫn hình ảnh (đã lấy từ cơ sở dữ liệu)
+                String selectedImagePath = "C:/Users/huynh/IdeaProjects/QUANTRIDULIEU/images/hinh_anh1.png";
 
+// Chuyển đường dẫn thành đối tượng Image
+                Image image = new Image("file:" + selectedImagePath);
+
+// Hiển thị hình ảnh trong ImageView
+                imageurl.setImage(image);
 
             }
         });
@@ -178,6 +179,7 @@ public class EmployeeController {
                 imageurl.setImage(image);
 
                 System.out.println("Ảnh đã lưu tại: " + selectedImagePath);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

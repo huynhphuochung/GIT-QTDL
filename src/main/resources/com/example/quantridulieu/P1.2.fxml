@@ -172,7 +172,7 @@
 
                                             </children>
                                         </AnchorPane>
-                                        <Button fx:id="anh" layoutX="380.0" layoutY="522.0" mnemonicParsing="false" text="Upload ảnh" onAction="#onUploadImage">
+                                        <Button fx:id="uploadImageButton" layoutX="380.0" layoutY="522.0" mnemonicParsing="false" text="Upload ảnh" onAction="#onUploadImage">
                                             <font>
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>

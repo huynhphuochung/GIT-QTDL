@@ -18,8 +18,8 @@ public class Employee {
 
     private SimpleStringProperty  diachi;
     private SimpleDoubleProperty heluong;
-    private byte[] hinhanh;
-    public Employee(String idnhanvien, String hotennv, int sdt , String gioitinh, String trangthai, String chucvu, String ngaysinh, String diachi, Double heluong, byte[] hinhanh  )
+    private SimpleStringProperty hinhanh;
+    public Employee(String idnhanvien, String hotennv, int sdt , String gioitinh, String trangthai, String chucvu, String ngaysinh, String diachi, Double heluong, String hinhanh  )
 
     {
         this.idnhanvien= new SimpleStringProperty(idnhanvien);
@@ -31,7 +31,7 @@ public class Employee {
         this.ngaysinh = new SimpleStringProperty (ngaysinh);
         this.diachi = new SimpleStringProperty(diachi);
         this.heluong = new SimpleDoubleProperty(heluong);
-        this.hinhanh = hinhanh;
+        this.hinhanh = new SimpleStringProperty(hinhanh) ;
     }
     //idnhan vien
     public SimpleStringProperty idnvProperty() {
@@ -144,12 +144,12 @@ public class Employee {
         this.heluong.set(heluong);
     }
 //hinh anh
-public byte[] gethinhanh() {
+public SimpleStringProperty gethinhanh() {
     return hinhanh;
 }
 
-    public void sethinhanh(byte[] hinhanh) {
-        this.hinhanh = hinhanh;
+    public void sethinhanh(String hinhanh) {
+        this.hinhanh.set(hinhanh);
     }
 
 }
