@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quantridulieu.tk_controller">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
@@ -28,10 +23,9 @@
                             <children>
                                 <AnchorPane layoutX="34.0" layoutY="-86.0" prefHeight="114.4" prefWidth="800.0" style="-fx-background-color: E9EBED;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <Polygon fill="DODGERBLUE" layoutX="38.0" layoutY="18.0" points="-12.399993896484375, 9.999994277954102, 14.0, 3.6000003814697266, -2.0000076293945312, -6.400005340576172" stroke="BLACK" strokeType="INSIDE" />
-                                        <Label layoutX="65.0" layoutY="11.0" text="Hệ thống quản lý nhân sự">
+                                        <Label layoutX="400.0" layoutY="8.0" prefHeight="18.0" prefWidth="252.0" text="Hệ thống quản lý nhân sự">
                                             <font>
-                                                <Font name="Tahoma Bold" size="11.0" />
+                                                <Font name="Tahoma Bold" size="14.0" />
                                             </font>
                                         </Label>
                                     </children>
@@ -42,31 +36,20 @@
                     <left>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane layoutX="-14.0" layoutY="51.0" prefHeight="584.8" prefWidth="200.0" style="-fx-background-color: #73B4F1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane layoutX="-14.0" layoutY="-35.2" prefHeight="620.0" prefWidth="200.0" style="-fx-background-color: #73B4F1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-35.0">
                                     <children>
-                                        <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="84.0" radius="59.0" stroke="BLACK" strokeType="INSIDE" />
-                                        <Label layoutX="68.0" layoutY="155.0" text="Xin chào">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="15.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="58.0" layoutY="174.0" text="Usename ">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="17.0" />
-                                            </font>
-                                        </Label>
-                                        <Line endX="53.09999084472656" endY="1.52587890625E-5" layoutX="124.0" layoutY="195.0" startX="-100.0" />
-                                        <Button layoutX="25.0" layoutY="211.0" mnemonicParsing="false" text="Thêm nhân viên">
+                                        <Line endX="76.0" layoutX="124.0" layoutY="195.0" startX="-130.39999389648438" stroke="WHITE" />
+                                        <Button layoutX="7.0" layoutY="225.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="186.0" text="Thêm nhân viên">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>
                                         </Button>
-                                        <Button layoutX="25.0" layoutY="260.0" mnemonicParsing="false" text="Thống kê lương">
+                                        <Button layoutX="9.0" layoutY="310.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" text="Xem danh sách">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>
                                         </Button>
-                                        <Button layoutX="25.0" layoutY="308.0" mnemonicParsing="false" text="Lập phiếu lương">
+                                        <Button layoutX="9.0" layoutY="402.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" text="In thông tin">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>
@@ -76,6 +59,11 @@
                                                 <Font name="Tahoma" size="12.0" />
                                             </font>
                                         </Button>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/partners.png" />
+                                 </image>
+                              </ImageView>
                                     </children>
                                 </AnchorPane>
                             </children>
@@ -86,36 +74,6 @@
                             <children>
                                 <AnchorPane layoutY="3.0" prefHeight="578.0" prefWidth="590.0" style="-fx-background-color: #fff; -fx-border-radius: 1px; -fx-border-color: #000;">
                                     <children>
-                                        <AnchorPane layoutX="7.0" prefHeight="229.0" prefWidth="575.0" style="-fx-background-color: E9EBED; -fx-border-radius: 1px; -fx-border-color: #000;">
-                                            <children>
-                                                <TableView layoutX="3.0" layoutY="50.0" prefHeight="241.0" prefWidth="567.0">
-                                                    <columns>
-                                                        <TableColumn prefWidth="44.79998779296875" text="TỔNG QUỸ LƯƠNG" />
-                                                        <TableColumn minWidth="0.0" prefWidth="106.4000244140625" text="LƯƠNG TRUNG BÌNH NHÂN VIÊN" />
-                                                        <TableColumn prefWidth="104.79998779296875" text="LƯƠNG THEO PHÒNG" />
-                                          <TableColumn prefWidth="96.0" text="SỐ LƯỢNG NHÂN VIÊN" />
-                                                        <TableColumn prefWidth="137.60003662109375" text="TRẠNG THÁI" />
-                                                        <TableColumn prefWidth="80.0001220703125" text="BIẾN ĐỘNG" />
-                                          <TableColumn prefWidth="148.800048828125" text="Column X" />
-                                          <TableColumn prefWidth="75.0" text="Column X" />
-                                                    </columns>
-                                                </TableView>
-                                                <TextField layoutX="164.0" layoutY="14.0" prefHeight="26.0" prefWidth="248.0" promptText="Search" />
-                                    <LineChart layoutX="3.0" layoutY="327.0" prefHeight="150.0" prefWidth="565.0">
-                                      <xAxis>
-                                        <CategoryAxis side="BOTTOM" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis side="LEFT" />
-                                      </yAxis>
-                                    </LineChart>
-                                    <Label layoutX="14.0" layoutY="301.0" text="BIỂU ĐỒ TRỰC QUAN">
-                                       <font>
-                                          <Font name="Tahoma" size="13.0" />
-                                       </font>
-                                    </Label>
-                                            </children>
-                                        </AnchorPane>
                               <MenuButton layoutX="14.0" layoutY="532.0" mnemonicParsing="false" text="THỐNG KÊ THEO">
                                 <items>
                                   <MenuItem mnemonicParsing="false" text="Action 1" />
@@ -128,6 +86,7 @@
                                   <MenuItem mnemonicParsing="false" text="Action 2" />
                                 </items>
                               </MenuButton>
+                              <PieChart fx:id="piechart_nhan_vien_nam_nu" layoutX="33.0" layoutY="24.0" prefHeight="456.0" prefWidth="538.0" titleSide="BOTTOM" />
                                     </children>
                                 </AnchorPane>
                             </children>

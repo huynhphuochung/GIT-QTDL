@@ -44,7 +44,7 @@
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>
                                         </Button>
-                                        <Button layoutX="14.0" layoutY="264.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="171.0" text="Thống kê lương">
+                                        <Button onAction="#ontk" layoutX="14.0" layoutY="264.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="171.0" text="Thống kê lương">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>

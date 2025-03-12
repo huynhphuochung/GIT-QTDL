@@ -215,6 +215,27 @@ public class EmployeeController {
             alert.showAndWait();
         }
     }
+    @FXML
+    public void ontk(ActionEvent event) {
+        // Xử lý đăng xuất và mở lại màn hình đăng nhập
+        try {
+            // Tạo một cửa sổ đăng nhập mới (HelloApplication là class của màn hình đăng nhập của bạn)
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quantridulieu/tk.fxml"));
+            Scene loginScene = new Scene(loader.load());
 
+            // Lấy Stage hiện tại từ sự kiện
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(loginScene);  // Chuyển cảnh
+            currentStage.show();  // Hiển thị cửa sổ
+
+        } catch (Exception e) {
+            // Nếu có lỗi xảy ra khi đăng xuất, hiển thị thông báo lỗi
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error logging out");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
 }
 
