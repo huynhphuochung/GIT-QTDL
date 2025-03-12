@@ -8,9 +8,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -45,11 +52,22 @@ public class EmployeeController {
     @FXML
     private TextField ngaysinhtextfield;
     @FXML
+
     private TextField diachitextfield;
     @FXML
     private TextField hesoluongtextfield;
     @FXML
     private ImageView imageurl;
+    private TextField hsluongtextfild;
+    @FXML
+    private Button uploadImageButton;
+    @FXML
+    private String selectedImagePath = null;  // Đường dẫn ảnh đã chọn
+    @FXML
+    private myjbdc myjbdc = new myjbdc(); // Khởi tạo đối tượng kết nối
+
+
+
     @FXML
     private void initialize() {
         // Gán dữ liệu cho các cột của TableView
@@ -128,7 +146,73 @@ public class EmployeeController {
         }
     }
 
+    @FXML
+    private void onUploadImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(null);
 
+        if (file != null) {
+            try {
+                // Đường dẫn lưu ảnh trong dự án
+                String destDirectory = "src/main/resources/image/";
+                File destFolder = new File(destDirectory);
 
+                // Tạo thư mục nếu chưa tồn tại
+                if (!destFolder.exists()) {
+                    destFolder.mkdirs();
+                }
+
+                // Tạo tên file mới
+                String newFileName = System.currentTimeMillis() + "_" + file.getName();
+                File destFile = new File(destFolder, newFileName);
+
+                // Copy file vào thư mục lưu ảnh
+                Files.copy(file.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                // Lưu đường dẫn vào biến `selectedImagePath`
+                selectedImagePath = "images/" + newFileName;  // Chỉ lưu đường dẫn tương đối
+
+                // Hiển thị ảnh
+                Image image = new Image(destFile.toURI().toString());
+                imageurl.setImage(image);
+
+                System.out.println("Ảnh đã lưu tại: " + selectedImagePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    private void onUpdate(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(idtextfield.getText());
+            String name = hotentextfield.getText();
+            String birthDate = ngaysinhtextfield.getText();
+            String gender = gioitinhtextfield.getText();
+            String phone = sdttextfield.getText();
+            String address = diachitextfield.getText();
+            String status = trangthaitextfield.getText();
+
+            myjbdc.updateEmployee(id, name, birthDate, gender, phone, address, status, selectedImagePath);
+
+            employeeTableView.setItems(myjbdc.getEmployeeList());
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thành công");
+            alert.setHeaderText(null);
+            alert.setContentText("Cập nhật nhân viên thành công!");
+            alert.showAndWait();
+
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setHeaderText("Dữ liệu không hợp lệ");
+            alert.setContentText("Vui lòng nhập đúng định dạng.");
+            alert.showAndWait();
+        }
+    }
 
 }
+

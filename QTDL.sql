@@ -122,3 +122,32 @@ INSERT INTO NguoiDung (ten_dang_nhap, mat_khau)
 VALUES 
 ('admin', 'admin123');
 
+-- Cập nhật thông tin nhân viên
+drop PROCEDURE UpdateNhanVien;
+
+DELIMITER &&
+
+CREATE PROCEDURE UpdateNhanVien(
+    IN p_ma_nhan_vien INT,
+    IN p_ho_ten VARCHAR(150),
+    IN p_ngay_sinh DATE,
+    IN p_gioi_tinh ENUM('Nam', 'Nữ', 'Khác'),
+    IN p_so_dien_thoai VARCHAR(20),
+    IN p_dia_chi TEXT,
+    IN p_trang_thai ENUM('Đang làm', 'Đã nghỉ', 'Nghỉ hưu'),
+    IN p_hinh_anh VARCHAR(255)
+)
+BEGIN
+    UPDATE NhanVien
+    SET
+        ho_ten = p_ho_ten,
+        ngay_sinh = p_ngay_sinh,
+        gioi_tinh = p_gioi_tinh,
+        so_dien_thoai = p_so_dien_thoai,
+        dia_chi = p_dia_chi,
+        trang_thai = p_trang_thai,
+        hinh_anh = p_hinh_anh
+    WHERE ma_nhan_vien = p_ma_nhan_vien;
+END &&
+
+DELIMITER ;

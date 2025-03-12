@@ -128,7 +128,9 @@
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>
                                         </Label>
+
                                         <TextField fx:id="hesoluongtextfield" layoutX="355.0" layoutY="403.0" prefHeight="26.0" prefWidth="223.0" />
+
                                         <Label layoutX="20.0" layoutY="485.0" text="Địa chỉ">
                                             <font>
                                                 <Font name="Tahoma Bold" size="13.0" />
@@ -145,7 +147,8 @@
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>
                                         </Button>
-                                        <Button layoutX="238.0" layoutY="522.0" mnemonicParsing="false" text="Lưu thây đổi">
+                              <Button layoutX="238.0" layoutY="522.0" mnemonicParsing="false" text="Lưu thây đổi" onAction="#onUpdate">
+
                                             <font>
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>
@@ -164,10 +167,12 @@
                                         <TextField fx:id="trangthaitextfield" layoutX="356.0" layoutY="442.0" prefHeight="26.0" prefWidth="222.0" />
                                         <AnchorPane layoutX="494.0" layoutY="474.0" prefHeight="100.0" prefWidth="88.0">
                                             <children>
+
                                                 <ImageView fx:id="imageurl" fitHeight="100.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" style="-fx-preserve-ratio: true; -fx-fit-height: 100%; -fx-fit-width: 100%;" />
+
                                             </children>
                                         </AnchorPane>
-                                        <Button layoutX="380.0" layoutY="522.0" mnemonicParsing="false" text="Upload ảnh">
+                                        <Button fx:id="anh" layoutX="380.0" layoutY="522.0" mnemonicParsing="false" text="Upload ảnh" onAction="#onUploadImage">
                                             <font>
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>

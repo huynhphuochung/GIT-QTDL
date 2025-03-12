@@ -4,8 +4,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.io.File;
-import java.util.Date;
+
 
 // hàm xây dựng
 public class Employee {
@@ -16,10 +15,12 @@ public class Employee {
     private SimpleStringProperty trangthai;
     private SimpleStringProperty  chucvu;
     private SimpleStringProperty  ngaysinh;
+
     private SimpleStringProperty  diachi;
     private SimpleDoubleProperty heluong;
     private byte[] hinhanh;
     public Employee(String idnhanvien, String hotennv, int sdt , String gioitinh, String trangthai, String chucvu, String ngaysinh, String diachi, Double heluong, byte[] hinhanh  )
+
     {
         this.idnhanvien= new SimpleStringProperty(idnhanvien);
         this.hotennv= new SimpleStringProperty(hotennv);
