@@ -8,8 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.text.SimpleDateFormat;
 
 public class EmployeeController {
@@ -40,7 +44,12 @@ public class EmployeeController {
     private TextField chucvutextfield;
     @FXML
     private TextField ngaysinhtextfield;
-
+    @FXML
+    private TextField diachitextfield;
+    @FXML
+    private TextField hesoluongtextfield;
+    @FXML
+    private ImageView imageurl;
     @FXML
     private void initialize() {
         // Gán dữ liệu cho các cột của TableView
@@ -62,6 +71,15 @@ public class EmployeeController {
                 hotentextfield.setText(newValue.gethotennv().get());
                 chucvutextfield.setText(newValue.getchucvu().get());
                 ngaysinhtextfield.setText(newValue.getNgaysinh().get());
+                diachitextfield.setText(newValue.getdiachi().get());
+                hesoluongtextfield.setText(String.valueOf(newValue.getheluong().get()));
+                // chuyển hình ảnh từ byte thành image
+                byte[] imageBytes = newValue.gethinhanh();
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(imageBytes);
+                Image image = new Image(inputStream);
+                imageurl.setImage(image);
+
+
             }
         });
         if (!employeeList.isEmpty()) {
@@ -71,6 +89,9 @@ public class EmployeeController {
             gioitinhtextfield.setText(firstEmployee.getgioitinhnnv().get());
             sdttextfield.setText(String.valueOf(firstEmployee.getsdt().get()));
             hotentextfield.setText(firstEmployee.gethotennv().get());
+            ngaysinhtextfield.setText(firstEmployee.getNgaysinh().get());
+            diachitextfield.setText(firstEmployee.getdiachi().get());
+            hesoluongtextfield.setText(String.valueOf(firstEmployee.getheluong().get()));
             // Tự động chọn nhân viên đầu tiên trong TableView
             employeeTableView.getSelectionModel().select(0);
         }

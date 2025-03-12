@@ -26,8 +26,10 @@ public class myjbdc {
                 String trangthai = rs.getString("trang_thai");
                 String chucvu = rs.getString("ma_chuc_vu");
                 String ngaysinh = rs.getString("ngay_sinh");
-
-                Employee employee = new Employee(id, name, sdt, gioitinhnv, trangthai, chucvu, ngaysinh);
+                String diachi = rs.getString("dia_chi");
+                Double heluong= rs.getDouble("he_so_luong");
+                byte[] hinhanh=rs.getBytes("hinh_anh");
+                Employee employee = new Employee(id, name, sdt, gioitinhnv, trangthai, chucvu, ngaysinh, diachi, heluong, hinhanh);
                 employeeList.add(employee);
             }
         } catch (SQLException e) {

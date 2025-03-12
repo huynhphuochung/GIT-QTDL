@@ -1,7 +1,10 @@
 package com.example.quantridulieu;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+
+import java.io.File;
 import java.util.Date;
 
 // hàm xây dựng
@@ -13,7 +16,10 @@ public class Employee {
     private SimpleStringProperty trangthai;
     private SimpleStringProperty  chucvu;
     private SimpleStringProperty  ngaysinh;
-    public Employee(String idnhanvien, String hotennv, int sdt , String gioitinh, String trangthai, String chucvu, String ngaysinh  )
+    private SimpleStringProperty  diachi;
+    private SimpleDoubleProperty heluong;
+    private byte[] hinhanh;
+    public Employee(String idnhanvien, String hotennv, int sdt , String gioitinh, String trangthai, String chucvu, String ngaysinh, String diachi, Double heluong, byte[] hinhanh  )
     {
         this.idnhanvien= new SimpleStringProperty(idnhanvien);
         this.hotennv= new SimpleStringProperty(hotennv);
@@ -22,6 +28,9 @@ public class Employee {
         this.trangthai=new SimpleStringProperty(trangthai);
         this.chucvu= new SimpleStringProperty(chucvu);
         this.ngaysinh = new SimpleStringProperty (ngaysinh);
+        this.diachi = new SimpleStringProperty(diachi);
+        this.heluong = new SimpleDoubleProperty(heluong);
+        this.hinhanh = hinhanh;
     }
     //idnhan vien
     public SimpleStringProperty idnvProperty() {
@@ -107,6 +116,39 @@ public class Employee {
     public void setNgaysinh(SimpleStringProperty  ngaysinh) {
         this.ngaysinh = ngaysinh;
     }
+    //địa chỉ nhân viên
+    public SimpleStringProperty diachiProperty()
+    {
+        return this.diachi;
+    }
+    public SimpleStringProperty getdiachi()
+    {
+        return diachi;
+    }
+    public void setdiachi(String diachi)
+    {
+        this.diachi.set(diachi);
+    }
+    //he luong
+    public SimpleDoubleProperty heluongProperty()
+    {
+        return this.heluong;
+    }
+    public SimpleDoubleProperty getheluong()
+    {
+        return heluong;
+    }
+    public void setheluong(Double heluong)
+    {
+        this.heluong.set(heluong);
+    }
+//hinh anh
+public byte[] gethinhanh() {
+    return hinhanh;
+}
 
+    public void sethinhanh(byte[] hinhanh) {
+        this.hinhanh = hinhanh;
+    }
 
 }

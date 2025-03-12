@@ -111,7 +111,7 @@
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>
                                         </Label>
-                                        <TextField layoutX="370.0" layoutY="259.0" prefHeight="26.0" prefWidth="174.0" promptText="Thêm hệ số lương" />
+                                        <TextField fx:id="hesoluongtextfield" layoutX="370.0" layoutY="259.0" prefHeight="26.0" prefWidth="174.0" promptText="Thêm hệ số lương" />
                                         <Label layoutX="15.0" layoutY="373.0" text="Địa Chỉ">
                                             <font>
                                                 <Font name="Tahoma Bold" size="13.0" />
