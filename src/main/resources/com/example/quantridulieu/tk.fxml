@@ -39,12 +39,12 @@
                                 <AnchorPane layoutX="-14.0" layoutY="-35.2" prefHeight="620.0" prefWidth="200.0" style="-fx-background-color: #73B4F1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-35.0">
                                     <children>
                                         <Line endX="76.0" layoutX="124.0" layoutY="195.0" startX="-130.39999389648438" stroke="WHITE" />
-                                        <Button layoutX="7.0" layoutY="225.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="186.0" text="Thêm nhân viên">
+                                        <Button onAction="#onthemnv" layoutX="7.0" layoutY="225.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="186.0" text="Thêm nhân viên">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>
                                         </Button>
-                                        <Button layoutX="9.0" layoutY="310.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" text="Xem danh sách">
+                                        <Button onAction="#ondanhsachnv" layoutX="9.0" layoutY="310.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" text="Danh sách nhân viên">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>

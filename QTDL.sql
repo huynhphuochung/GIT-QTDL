@@ -31,6 +31,7 @@ CREATE TABLE NhanVien (
     FOREIGN KEY (ma_phong_ban) REFERENCES PhongBan(ma_phong_ban),
     FOREIGN KEY (ma_chuc_vu) REFERENCES ChucVu(ma_chuc_vu)
 );//xong
+ALTER TABLE NhanVien ADD COLUMN hinh_anh VARCHAR(255);
 
 -- Bảng Lương
 CREATE TABLE Luong (

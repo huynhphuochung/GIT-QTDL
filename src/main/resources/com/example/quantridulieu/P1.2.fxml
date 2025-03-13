@@ -39,12 +39,12 @@
                                 <AnchorPane layoutX="-14.0" layoutY="-35.2" prefHeight="620.0" prefWidth="200.0" style="-fx-background-color: #73B4F1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-35.0">
                                     <children>
                                         <Line endX="79.0" layoutX="120.0" layoutY="140.0" startX="-121.0" stroke="#fff8f8" />
-                                        <Button layoutX="15.0" layoutY="180.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="170.0" text="Thêm nhân viên">
+                                        <Button onAction="#onthemnv" layoutX="15.0" layoutY="180.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="170.0" text="Thêm nhân viên">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>
                                         </Button>
-                                        <Button onAction="#ontk" layoutX="14.0" layoutY="264.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="171.0" text="Thống kê lương">
+                                        <Button layoutX="14.0" layoutY="264.0" mnemonicParsing="false" onAction="#ontk" prefHeight="55.0" prefWidth="171.0" text="Thống kê lương">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>
@@ -61,7 +61,7 @@
                                         </Button>
                               <ImageView fitHeight="113.0" fitWidth="134.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/partners.png" />
+                                     <Image url="@../../../image/partners.png" />
                                  </image>
                               </ImageView>
                                     </children>
@@ -147,7 +147,7 @@
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>
                                         </Button>
-                              <Button layoutX="238.0" layoutY="522.0" mnemonicParsing="false" text="Lưu thây đổi" onAction="#onUpdate">
+                              <Button layoutX="238.0" layoutY="522.0" mnemonicParsing="false" onAction="#onUpdate" text="Lưu thây đổi">
 
                                             <font>
                                                 <Font name="Tahoma Bold" size="13.0" />
@@ -168,11 +168,14 @@
                                         <AnchorPane layoutX="494.0" layoutY="474.0" prefHeight="100.0" prefWidth="88.0">
                                             <children>
 
-                                                <ImageView fx:id="imageurl" fitHeight="100.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" style="-fx-preserve-ratio: true; -fx-fit-height: 100%; -fx-fit-width: 100%;" />
-
+                                                <ImageView fx:id="imageurl" fitHeight="100.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../image/team.png" />
+                                                    </image>
+                                                </ImageView>
                                             </children>
                                         </AnchorPane>
-                                        <Button fx:id="uploadImageButton" layoutX="380.0" layoutY="522.0" mnemonicParsing="false" text="Upload ảnh" onAction="#onUploadImage">
+                                        <Button fx:id="uploadImageButton" layoutX="380.0" layoutY="522.0" mnemonicParsing="false" onAction="#onUploadImage" text="Upload ảnh">
                                             <font>
                                                 <Font name="Tahoma Bold" size="13.0" />
                                             </font>

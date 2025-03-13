@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
@@ -18,9 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.text.SimpleDateFormat;
 
 public class EmployeeController {
@@ -52,7 +49,6 @@ public class EmployeeController {
     @FXML
     private TextField ngaysinhtextfield;
     @FXML
-
     private TextField diachitextfield;
     @FXML
     private TextField hesoluongtextfield;
@@ -65,66 +61,63 @@ public class EmployeeController {
     @FXML
     private myjbdc myjbdc = new myjbdc(); // Khởi tạo đối tượng kết nối
 
-
-
     @FXML
     private void initialize() {
-        // Gán dữ liệu cho các cột của TableView
-     idcolumn.setCellValueFactory(cellData -> cellData.getValue().idnvProperty() );
-     namecolumn.setCellValueFactory(cellData -> cellData.getValue().hotennvProperty() );
-     gioitinhcolumn.setCellValueFactory(cellData -> cellData.getValue().gioitinhnvProperty() );
-     trangthaicolumn.setCellValueFactory(cellData -> cellData.getValue().trangthaiProperty() );
-     sdtcolumn.setCellValueFactory(cellData -> cellData.getValue().sdtProperty().asObject());
+        idcolumn.setCellValueFactory(cellData -> cellData.getValue().idnvProperty());
+        namecolumn.setCellValueFactory(cellData -> cellData.getValue().hotennvProperty());
+        gioitinhcolumn.setCellValueFactory(cellData -> cellData.getValue().gioitinhnvProperty());
+        trangthaicolumn.setCellValueFactory(cellData -> cellData.getValue().trangthaiProperty());
+        sdtcolumn.setCellValueFactory(cellData -> cellData.getValue().sdtProperty().asObject());
 
         ObservableList<Employee> employeeList = myjbdc.getEmployeeList();
-     employeeTableView.setItems(employeeList);
+        employeeTableView.setItems(employeeList);
+
+        // Kiểm tra nếu danh sách không rỗng và chọn nhân viên đầu tiên
+        if (!employeeList.isEmpty()) {
+            employeeTableView.getSelectionModel().select(0);  // Chọn nhân viên đầu tiên
+            Employee firstEmployee = employeeTableView.getSelectionModel().getSelectedItem();  // Lấy nhân viên đầu tiên
+            loadEmployeeDetails(firstEmployee);  // Gọi phương thức để hiển thị chi tiết nhân viên
+        }
+
+        // Lắng nghe sự thay đổi chọn nhân viên và cập nhật thông tin chi tiết
         employeeTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                // Cập nhật thông tin trong các TextField khi người dùng chọn nhân viên
-                idtextfield.setText(newValue.getidnv().get());
-                trangthaitextfield.setText(newValue.gettrangthainhnnv().get());
-                gioitinhtextfield.setText(newValue.getgioitinhnnv().get());
-                sdttextfield.setText(String.valueOf(newValue.getsdt().get()));
-                hotentextfield.setText(newValue.gethotennv().get());
-                chucvutextfield.setText(newValue.getchucvu().get());
-                ngaysinhtextfield.setText(newValue.getNgaysinh().get());
-                diachitextfield.setText(newValue.getdiachi().get());
-                hesoluongtextfield.setText(String.valueOf(newValue.getheluong().get()));
-                // Giả sử bạn đã có đường dẫn hình ảnh (đã lấy từ cơ sở dữ liệu)
-                String selectedImagePath = "C:/Users/huynh/IdeaProjects/QUANTRIDULIEU/images/hinh_anh1.png";
-
-// Chuyển đường dẫn thành đối tượng Image
-                Image image = new Image("file:" + selectedImagePath);
-
-// Hiển thị hình ảnh trong ImageView
-                imageurl.setImage(image);
-
+                loadEmployeeDetails(newValue);  // Cập nhật thông tin khi chọn nhân viên mới
             }
         });
-        if (!employeeList.isEmpty()) {
-            Employee firstEmployee = employeeList.get(0); // Lấy nhân viên đầu tiên
-            idtextfield.setText(firstEmployee.getidnv().get());
-            trangthaitextfield.setText(firstEmployee.gettrangthainhnnv().get());
-            gioitinhtextfield.setText(firstEmployee.getgioitinhnnv().get());
-            sdttextfield.setText(String.valueOf(firstEmployee.getsdt().get()));
-            hotentextfield.setText(firstEmployee.gethotennv().get());
-            ngaysinhtextfield.setText(firstEmployee.getNgaysinh().get());
-            diachitextfield.setText(firstEmployee.getdiachi().get());
-            hesoluongtextfield.setText(String.valueOf(firstEmployee.getheluong().get()));
-            // Tự động chọn nhân viên đầu tiên trong TableView
-            employeeTableView.getSelectionModel().select(0);
+    }
+
+    // Phương thức để tải chi tiết của nhân viên vào các trường thông tin
+    private void loadEmployeeDetails(Employee employee) {
+        idtextfield.setText(employee.getidnv().get());
+        trangthaitextfield.setText(employee.gettrangthainhnnv().get());
+        gioitinhtextfield.setText(employee.getgioitinhnnv().get());
+        sdttextfield.setText(String.valueOf(employee.getsdt().get()));
+        hotentextfield.setText(employee.gethotennv().get());
+        chucvutextfield.setText(employee.getchucvu().get());
+        ngaysinhtextfield.setText(employee.getNgaysinh().get());
+        diachitextfield.setText(employee.getdiachi().get());
+        hesoluongtextfield.setText(String.valueOf(employee.getheluong().get()));
+
+        // Tải ảnh
+        String selectedImagePath = employee.gethinhanh().get();
+        if (selectedImagePath != null && !selectedImagePath.isEmpty()) {
+            File imageFile = new File("C:\\Users\\huynh\\IdeaProjects\\QUANTRIDULIEU\\src\\main\\resources\\image" + selectedImagePath);
+            if (imageFile.exists()) {
+                Image image = new Image(imageFile.toURI().toString());
+                imageurl.setImage(image);
+            } else {
+                System.out.println("⚠ Ảnh không tồn tại: " + imageFile.getAbsolutePath());
+                imageurl.setImage(null);
+            }
+        } else {
+            imageurl.setImage(null);
         }
     }
 
 
-    private Stage stage;  // Stage của ứng dụng
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
 
 
-    // Hàm để xử lý sự kiện đăng xuất
-    @FXML
     public void onLogout(ActionEvent event) {
         // Xử lý đăng xuất và mở lại màn hình đăng nhập
         try {
@@ -146,7 +139,6 @@ public class EmployeeController {
             alert.showAndWait();
         }
     }
-
     @FXML
     private void onUploadImage() {
         FileChooser fileChooser = new FileChooser();
@@ -172,7 +164,7 @@ public class EmployeeController {
                 Files.copy(file.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
                 // Lưu đường dẫn vào biến `selectedImagePath`
-                selectedImagePath = "images/" + newFileName;  // Chỉ lưu đường dẫn tương đối
+                selectedImagePath = "/" + newFileName;  // Chỉ lưu đường dẫn tương đối
 
                 // Hiển thị ảnh
                 Image image = new Image(destFile.toURI().toString());
@@ -217,19 +209,31 @@ public class EmployeeController {
     }
     @FXML
     public void ontk(ActionEvent event) {
-        // Xử lý đăng xuất và mở lại màn hình đăng nhập
         try {
-            // Tạo một cửa sổ đăng nhập mới (HelloApplication là class của màn hình đăng nhập của bạn)
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quantridulieu/tk.fxml"));
             Scene loginScene = new Scene(loader.load());
 
-            // Lấy Stage hiện tại từ sự kiện
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.setScene(loginScene);  // Chuyển cảnh
-            currentStage.show();  // Hiển thị cửa sổ
-
+            currentStage.setScene(loginScene);
+            currentStage.show();
         } catch (Exception e) {
-            // Nếu có lỗi xảy ra khi đăng xuất, hiển thị thông báo lỗi
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error logging out");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    public void onthemnv(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quantridulieu/ThemNV(2).fxml"));
+            Scene loginScene = new Scene(loader.load());
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(loginScene);
+            currentStage.show();
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Error logging out");

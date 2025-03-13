@@ -13,10 +13,11 @@ public class myjbdc {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/quanlynhansu";
     private static final String USER = "root";
     private static final String PASSWORD = "123456";
-    private static final String IMAGE_DIRECTORY = "src/main/resources/images/"; // Thư mục lưu ảnh
+    private static final String IMAGE_DIRECTORY = "C:\\Users\\huynh\\IdeaProjects\\QUANTRIDULIEU\\src\\main\\resources\\image"; // Thư mục lưu ảnh
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
+
     }
 
     public static ObservableList<Employee> getEmployeeList() {
@@ -36,7 +37,7 @@ public class myjbdc {
                 String chucvu = rs.getString("ma_chuc_vu");
                 String ngaysinh = rs.getString("ngay_sinh");
                 String diachi = rs.getString("dia_chi");
-                Double heluong= rs.getDouble("he_so_luong");
+                double heluong = rs.getDouble("he_so_luong");
                 String hinhanh =rs.getString("hinh_anh");
                 Employee employee = new Employee(id, name, sdt, gioitinhnv, trangthai, chucvu, ngaysinh, diachi, heluong, hinhanh);
                 employeeList.add(employee);
@@ -73,25 +74,23 @@ public class myjbdc {
     }
 
 
-//    public static String uploadImage(File imageFile) {
-//        if (imageFile == null) {
-//            return null; // Nếu không có ảnh, trả về null
-//        }
-//
-//        File directory = new File(IMAGE_DIRECTORY);
-//        if (!directory.exists()) {
-//            directory.mkdirs(); // Tạo thư mục nếu chưa có
-//        }
-//
-//        String newFileName = System.currentTimeMillis() + "_" + imageFile.getName(); // Đổi tên ảnh tránh trùng
-//        File destinationFile = new File(directory, newFileName);
-//
-//        try {
-//            Files.copy(imageFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-//            return IMAGE_DIRECTORY + newFileName; // Trả về đường dẫn ảnh mới
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
+    public static double[] getTyLeNamNuFromProcedure() {
+        double[] tyLe = new double[2];  // [0] -> tỷ lệ nam, [1] -> tỷ lệ nữ
+        String sql = "{CALL getTyLeNamNu()}";  // Gọi stored procedure
+
+        try (Connection conn = DriverManager.getConnection(URL,USER,PASSWORD);
+             CallableStatement stmt = conn.prepareCall(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                tyLe[0] = rs.getDouble("ty_le_nam");  // Lấy tỷ lệ nam
+                tyLe[1] = rs.getDouble("ty_le_nu");   // Lấy tỷ lệ nữ
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return tyLe;
+    }
 }
