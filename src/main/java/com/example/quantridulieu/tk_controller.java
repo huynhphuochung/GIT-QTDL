@@ -42,21 +42,6 @@ public class tk_controller {
             alert.showAndWait();
         }
     }
-    @FXML
-    public void onthemnv(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quantridulieu/ThemNV(2).fxml"));
-            Scene loginScene = new Scene(loader.load());
 
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.setScene(loginScene);
-            currentStage.show();
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error logging out");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-        }
-    }
+
 }

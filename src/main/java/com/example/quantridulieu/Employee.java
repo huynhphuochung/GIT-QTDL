@@ -1,12 +1,12 @@
 package com.example.quantridulieu;
-
+//khai báo các thư viện câ thiết
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 
 
-// hàm xây dựng
+// Khai báo các thuộc tính của lớp nhân viên
 public class Employee {
     private SimpleStringProperty idnhanvien;
     private SimpleStringProperty hotennv;
@@ -18,6 +18,7 @@ public class Employee {
     private SimpleStringProperty  diachi;
     private SimpleDoubleProperty heluong;
     private SimpleStringProperty hinhanh;
+    //hàm xây dựng nhân viên
     public Employee(String idnhanvien, String hotennv, int sdt , String gioitinh, String trangthai, String chucvu, String ngaysinh, String diachi, Double heluong, String hinhanh  )
 
     {
@@ -32,7 +33,7 @@ public class Employee {
         this.heluong = new SimpleDoubleProperty(heluong);
         this.hinhanh = new SimpleStringProperty(hinhanh) ;
     }
-    //idnhan vien
+    // lấy id nhân viên
     public SimpleStringProperty idnvProperty() {
         return idnhanvien;
     }
@@ -40,12 +41,7 @@ public class Employee {
     {
         return idnhanvien;
     }
-    public void setidnhanvien(SimpleStringProperty idnhanvien)
-    {
-        this.idnhanvien.set(String.valueOf(idnhanvien));
-    }
-    //
-     // họ tên nhan vien
+     // lấy họ tên nhan vien
     public SimpleStringProperty hotennvProperty()
     {
         return this.hotennv;
@@ -54,11 +50,7 @@ public class Employee {
     {
         return hotennv;
     }
-    public void sethotennv(String hotennv)
-    {
-        this.hotennv.set(hotennv);
-    }
-    //sdt nhan vien
+    //lấy sdt nhan vien
     public SimpleIntegerProperty sdtProperty() {
         return sdt;
     }
@@ -66,11 +58,7 @@ public class Employee {
     {
         return sdt;
     }
-    public void setsdt(int sdt)
-    {
-        this.sdt.set(sdt);
-    }
-   //gioitinhnhân viên
+   // lấy gioitinhnhân viên
    public SimpleStringProperty gioitinhnvProperty()
    {
        return this.gioitinh;
@@ -78,10 +66,6 @@ public class Employee {
     public SimpleStringProperty getgioitinhnnv()
     {
         return gioitinh;
-    }
-    public void setgioitinhnv(String gioitinh)
-    {
-        this.gioitinh.set(gioitinh);
     }
     //trạng thái nhân viên
     public SimpleStringProperty trangthaiProperty()
@@ -92,63 +76,31 @@ public class Employee {
     {
         return trangthai;
     }
-    public void settrangthainv(String trangthai)
-    {
-        this.trangthai.set(trangthai);
-    }
-    //chức vụ nhân viên
-    public SimpleStringProperty chucvuProperty()
-    {
-        return this.chucvu;
-    }
+    //lấy chức vụ nhân viên
     public SimpleStringProperty getchucvu()
     {
         return chucvu;
     }
-    public void setchucvu(String chucvu)
-    {
-        this.chucvu.set(chucvu);
-    }
+    //lấy ngày sinh
     public SimpleStringProperty  getNgaysinh() {
         return ngaysinh;
     }
-
-    public void setNgaysinh(SimpleStringProperty  ngaysinh) {
-        this.ngaysinh = ngaysinh;
-    }
-    //địa chỉ nhân viên
-    public SimpleStringProperty diachiProperty()
-    {
-        return this.diachi;
-    }
+    // lấy địa chỉ nhân viên
     public SimpleStringProperty getdiachi()
     {
         return diachi;
     }
-    public void setdiachi(String diachi)
-    {
-        this.diachi.set(diachi);
-    }
-    //he luong
-    public SimpleDoubleProperty heluongProperty()
-    {
-        return this.heluong;
-    }
+
+    //lay he luong
     public SimpleDoubleProperty getheluong()
     {
         return heluong;
     }
-    public void setheluong(Double heluong)
-    {
-        this.heluong.set(heluong);
-    }
-    //hinh anh
+    //lay đường dẫn hình ảnh
     public SimpleStringProperty gethinhanh() {
     return hinhanh;
 }
 
-    public void sethinhanh(String hinhanh) {
-        this.hinhanh.set(hinhanh);
-    }
+
 
 }

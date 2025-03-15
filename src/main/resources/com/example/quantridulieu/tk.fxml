@@ -3,8 +3,6 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,7 +21,7 @@
                             <children>
                                 <AnchorPane layoutX="34.0" layoutY="-86.0" prefHeight="114.4" prefWidth="800.0" style="-fx-background-color: E9EBED;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <Label layoutX="400.0" layoutY="8.0" prefHeight="18.0" prefWidth="252.0" text="Hệ thống quản lý nhân sự">
+                                        <Label layoutX="316.0" layoutY="8.0" prefHeight="18.0" prefWidth="344.0" text="Thống kê tỷ lệ nhân viên Nam và Nữ của công ty">
                                             <font>
                                                 <Font name="Tahoma Bold" size="14.0" />
                                             </font>
@@ -38,28 +36,13 @@
                             <children>
                                 <AnchorPane layoutX="-14.0" layoutY="-35.2" prefHeight="620.0" prefWidth="200.0" style="-fx-background-color: #73B4F1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-35.0">
                                     <children>
-                                        <Line endX="76.0" layoutX="124.0" layoutY="195.0" startX="-130.39999389648438" stroke="WHITE" />
-                                        <Button onAction="#onthemnv" layoutX="7.0" layoutY="225.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="186.0" text="Thêm nhân viên">
+                                        <Line endX="76.0" layoutX="120.0" layoutY="140.0" startX="-121.0" stroke="WHITE" />
+                                        <Button layoutX="15.0" layoutY="180.0" mnemonicParsing="false" onAction="#ondanhsachnv" prefHeight="52.0" prefWidth="170.0" text="Home">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>
                                         </Button>
-                                        <Button onAction="#ondanhsachnv" layoutX="9.0" layoutY="310.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" text="Danh sách nhân viên">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="16.0" />
-                                            </font>
-                                        </Button>
-                                        <Button layoutX="9.0" layoutY="402.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" text="In thông tin">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="16.0" />
-                                            </font>
-                                        </Button>
-                                        <Button layoutX="123.0" layoutY="547.0" mnemonicParsing="false" text="LOGUOT">
-                                            <font>
-                                                <Font name="Tahoma" size="12.0" />
-                                            </font>
-                                        </Button>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="113.0" fitWidth="134.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../image/partners.png" />
                                  </image>
@@ -74,18 +57,6 @@
                             <children>
                                 <AnchorPane layoutY="3.0" prefHeight="578.0" prefWidth="590.0" style="-fx-background-color: #fff; -fx-border-radius: 1px; -fx-border-color: #000;">
                                     <children>
-                              <MenuButton layoutX="14.0" layoutY="532.0" mnemonicParsing="false" text="THỐNG KÊ THEO">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                              </MenuButton>
-                              <MenuButton layoutX="490.0" layoutY="532.0" mnemonicParsing="false" text="XUẤT FILE">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                              </MenuButton>
                               <PieChart fx:id="piechart_nhan_vien_nam_nu" layoutX="33.0" layoutY="24.0" prefHeight="456.0" prefWidth="538.0" titleSide="BOTTOM" />
                                     </children>
                                 </AnchorPane>

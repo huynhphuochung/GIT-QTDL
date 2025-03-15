@@ -2,11 +2,6 @@ package com.example.quantridulieu;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.sql.*;
 
 public class myjbdc {
@@ -14,7 +9,6 @@ public class myjbdc {
     private static final String USER = "root";
     private static final String PASSWORD = "123456";
     private static final String IMAGE_DIRECTORY = "C:\\Users\\huynh\\IdeaProjects\\QUANTRIDULIEU\\src\\main\\resources\\image"; // Thư mục lưu ảnh
-
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
 
@@ -93,4 +87,20 @@ public class myjbdc {
 
         return tyLe;
     }
+    public static boolean checkConnection() {
+        try (Connection conn = getConnection()) {
+            if (conn != null) {
+                System.out.println("Kết nối MySQL thành công!");
+                return true;
+            } else {
+                System.out.println("Kết nối MySQL thất bại!");
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Lỗi kết nối MySQL: " + e.getMessage());
+            return false;
+        }
+    }
+
 }

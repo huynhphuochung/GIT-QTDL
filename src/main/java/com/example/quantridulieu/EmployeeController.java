@@ -1,5 +1,5 @@
 package com.example.quantridulieu;
-import javafx.beans.property.SimpleStringProperty;
+// khai báo các thư viện ///////////////////////////////////////////////////////////////////////////////
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,11 +17,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-import java.io.ByteArrayInputStream;
-import java.text.SimpleDateFormat;
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// Lớp EmployeeController
 public class EmployeeController {
-
     @FXML
     private TableView<Employee> employeeTableView;
     @FXML
@@ -55,12 +53,13 @@ public class EmployeeController {
     @FXML
     private ImageView imageurl;
     @FXML
-    private Button uploadImageButton;
-    @FXML
-    private String selectedImagePath = null;  // Đường dẫn ảnh đã chọn
+    private String selectedImagePath = null;  // lưu đường dẫn hình ảnh
     @FXML
     private myjbdc myjbdc = new myjbdc(); // Khởi tạo đối tượng kết nối
-
+    @FXML
+    private Button btnExportPDF;
+    @FXML
+    private TextField searchTextField;
     @FXML
     private void initialize() {
         idcolumn.setCellValueFactory(cellData -> cellData.getValue().idnvProperty());
@@ -84,6 +83,9 @@ public class EmployeeController {
             if (newValue != null) {
                 loadEmployeeDetails(newValue);  // Cập nhật thông tin khi chọn nhân viên mới
             }
+        });
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterTableData(newValue);  // Lọc dữ liệu khi người dùng nhập vào ô tìm kiếm
         });
     }
 
@@ -134,7 +136,7 @@ public class EmployeeController {
             // Nếu có lỗi xảy ra khi đăng xuất, hiển thị thông báo lỗi
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Error logging out");
+            alert.setHeaderText("LỖI KHI ĐĂNG XUẤT");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
@@ -191,7 +193,7 @@ public class EmployeeController {
 
             myjbdc.updateEmployee(id, name, birthDate, gender, phone, address, status, selectedImagePath);
 
-            employeeTableView.setItems(myjbdc.getEmployeeList());
+            employeeTableView.setItems(com.example.quantridulieu.myjbdc.getEmployeeList());
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thành công");
@@ -212,7 +214,6 @@ public class EmployeeController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quantridulieu/tk.fxml"));
             Scene loginScene = new Scene(loader.load());
-
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(loginScene);
             currentStage.show();
@@ -241,5 +242,49 @@ public class EmployeeController {
             alert.showAndWait();
         }
     }
+    // Phương thức sẽ gọi khi nhấn nút "Xuất PDF"
+    public void exportEmployeeListToPDF() {
+        // Tạo hộp thoại xác nhận
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xác nhận");
+        alert.setHeaderText("Bạn có chắc chắn muốn xuất danh sách nhân viên ra file PDF?");
+        alert.setContentText("Nhấn 'OK' để xác nhận, 'Hủy' để hủy bỏ.");
+
+        // Hiển thị hộp thoại và lấy kết quả (ButtonType)
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL); // Show và đợi người dùng chọn
+
+        // Kiểm tra nếu người dùng nhấn "OK"
+        if (result == ButtonType.OK) {
+            // Gọi phương thức main của lớp EmployeePdfExporter
+            EmployeePdfExporter.main(new String[0]);
+            showSuccessAlert();// Truyền vào tham số rỗng nếu không cần đối số
+        } else {
+            System.out.println("Quá trình xuất PDF đã bị hủy.");
+        }
+    }
+    private void showSuccessAlert() {
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+        successAlert.setTitle("Thành công");
+        successAlert.setHeaderText(null);  // Không cần header
+        successAlert.setContentText("Danh sách nhân viên đã được xuất thành công vào file PDF.");
+
+        // Hiển thị thông báo
+        successAlert.showAndWait();
+    }
+    private void filterTableData(String query) {
+        ObservableList<Employee> filteredList = FXCollections.observableArrayList();
+
+        for (Employee employee : myjbdc.getEmployeeList()) {
+            if (employee.getidnv().get().toLowerCase().contains(query.toLowerCase()) ||
+                    employee.gethotennv().get().toLowerCase().contains(query.toLowerCase()) ||
+                    employee.getgioitinhnnv().get().toLowerCase().contains(query.toLowerCase()) ||
+                    employee.getdiachi().get().toLowerCase().contains(query.toLowerCase())) {
+                filteredList.add(employee);  // Thêm vào danh sách lọc nếu trùng với từ khóa
+            }
+        }
+
+        employeeTableView.setItems(filteredList);  // Cập nhật TableView với danh sách đã lọc
+    }
+
 }
 

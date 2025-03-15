@@ -24,9 +24,9 @@
                             <children>
                                 <AnchorPane layoutX="34.0" layoutY="-86.0" prefHeight="114.4" prefWidth="800.0" style="-fx-background-color: E9EBED;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                                        <Label layoutX="402.0" layoutY="18.0" text="Hệ thống quản lý nhân sự">
+                                        <Label layoutX="375.0" layoutY="11.0" text="Hệ thống quản lý nhân sự">
                                             <font>
-                                                <Font name="Tahoma Bold" size="18.0" />
+                                                <Font name="Tahoma Bold" size="14.0" />
                                             </font>
                                         </Label>
                            </children>
@@ -39,32 +39,16 @@
                             <children>
                                 <AnchorPane layoutX="-14.0" layoutY="-35.2" prefHeight="626.0" prefWidth="200.0" style="-fx-background-color: #73B4F1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-35.0">
                                     <children>
-                                        <Line endX="76.80001831054688" layoutX="124.0" layoutY="195.0" startX="-124.0" stroke="WHITE" />
-                                        <Button onAction="#ondanhsachnv" layoutX="7.0" layoutY="221.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="188.0" text="Danh sách nhân viên">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="16.0" />
-                                            </font>
-                                        </Button>
-                                        <Button onAction="#ontk" layoutX="7.0" layoutY="309.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="187.0" text="Thống kê lương">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="16.0" />
-                                            </font>
-                                        </Button>
-                                        <Button layoutX="8.0" layoutY="406.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="186.0" text="Lập phiếu lương">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="16.0" />
-                                            </font>
-                                        </Button>
-                                        <Button layoutX="123.0" layoutY="547.0" mnemonicParsing="false" text="LOGUOT">
-                                            <font>
-                                                <Font name="Tahoma" size="12.0" />
-                                            </font>
-                                        </Button>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                                        <Line endX="76.80001831054688" layoutX="120.0" layoutY="140.0" startX="-121.0" stroke="WHITE" />
+                              <ImageView fitHeight="113.0" fitWidth="134.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../image/partners.png" />
                                  </image>
                               </ImageView>
+                              <Button layoutX="15.0" layoutY="180.0" mnemonicParsing="false" onAction="#ondanhsachnv" prefHeight="52.0" prefWidth="170.0" text="HOME">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
                                     </children>
                                 </AnchorPane>
                             </children>
@@ -75,41 +59,23 @@
                             <children>
                                 <AnchorPane prefHeight="591.0" prefWidth="601.0" style="-fx-background-color: #fff; -fx-border-radius: 1px; -fx-border-color: #000;">
                                     <children>
-                                        <Label layoutX="312.0" layoutY="313.0" text="Giới Tính">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="13.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="314.0" layoutY="370.0" text="Chức Vụ">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="13.0" />
-                                            </font>
-                                        </Label>
-                                        <ComboBox fx:id="gioiTinhComboBox" layoutX="374.0" layoutY="302.0" prefHeight="37.0" prefWidth="184.0" promptText="Chọn giới tính" style="-fx-background-color: #73B4F1;" />
-                                        <ComboBox fx:id="chucVuComboBox" layoutX="373.0" layoutY="359.0" prefHeight="37.0" prefWidth="186.0" promptText="Chọn chức vụ" style="-fx-background-color: #73B4F1;" />
-                                        <Label layoutX="59.0" layoutY="432.0" text="Ngày Vào">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="13.0" />
-                                            </font></Label>
-                                        <Label layoutX="55.0" layoutY="378.0" text="Phòng Ban">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="13.0" />
-                                            </font></Label>
-                                        <ComboBox fx:id="phongBanComboBox" layoutX="133.0" layoutY="365.0" prefHeight="41.0" prefWidth="167.0" promptText="Chọn phòng ban" style="-fx-background-color: #73B4F1;" />
-                                        <Label layoutX="408.0" layoutY="414.0" text="Ghi Chú">
+                                        <ComboBox fx:id="gioiTinhComboBox" layoutX="350.0" layoutY="296.0" prefHeight="50.0" prefWidth="241.0" promptText="Chọn giới tính" style="-fx-background-color: #73B4F1;" />
+                                        <ComboBox fx:id="chucVuComboBox" layoutX="350.0" layoutY="359.0" prefHeight="50.0" prefWidth="241.0" promptText="Chọn chức vụ" style="-fx-background-color: #73B4F1;" />
+                                        <ComboBox fx:id="phongBanComboBox" layoutX="57.0" layoutY="365.0" prefHeight="50.0" prefWidth="241.0" promptText="Chọn phòng ban" style="-fx-background-color: #73B4F1;" />
+                                        <Label layoutX="420.0" layoutY="417.0" text="Ghi Chú">
                                             <font>
                                                 <Font size="14.0" />
                                             </font></Label>
-                                        <TextArea fx:id="ghiChuArea" layoutX="334.0" layoutY="449.0" prefHeight="63.0" prefWidth="248.0" promptText="Thêm ghi chú..." />
-                                        <Button fx:id="confirmCheckBox" layoutX="445.0" layoutY="523.0" mnemonicParsing="false" onAction="#themNhanVien" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #73B4F1;" text="Thêm">
+                                        <TextArea fx:id="ghiChuArea" layoutX="334.0" layoutY="445.0" prefHeight="63.0" prefWidth="248.0" promptText="Thêm ghi chú..." />
+                                        <Button fx:id="confirmCheckBox" layoutX="445.0" layoutY="525.0" mnemonicParsing="false" onAction="#themNhanVien" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #4CAF50;" text="Thêm" textFill="WHITE">
                                             <font>
                                                 <Font name="Tahoma" size="14.0" />
                                             </font></Button>
-                                        <Button layoutX="332.0" layoutY="525.0" mnemonicParsing="false" onAction="#lamMoiForm" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #73B4F1;" text="Làm mới">
+                                        <Button layoutX="332.0" layoutY="525.0" mnemonicParsing="false" onAction="#lamMoiForm" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #FF5733;" text="Làm mới" textFill="WHITE">
                                             <font>
                                                 <Font name="Tahoma" size="14.0" />
                                             </font></Button>
-                              <Label layoutX="18.0" layoutY="532.0" text="Hãy kiểm tra kỹ các thông tin trước khi thêm vào!!!">
+                              <Label layoutX="18.0" layoutY="532.0" text="Hãy kiểm tra kỹ các thông tin trước khi thêm vào!!!" textFill="#e16262">
                                  <font>
                                     <Font name="Tahoma" size="13.0" />
                                  </font>
@@ -124,7 +90,7 @@
                                               </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="56.0" layoutY="108.0" prefHeight="66.0" prefWidth="501.0" style="-fx-background-color: #73B4F1; -fx-background-radius: 5px;">
+                              <AnchorPane layoutX="56.0" layoutY="108.0" prefHeight="70.0" prefWidth="499.0" style="-fx-background-color: #73B4F1; -fx-background-radius: 5px;">
                                  <children>
                                               <Label layoutX="59.0" layoutY="21.0" text="SĐT" textFill="#fffefe">
                                                   <font>
@@ -134,29 +100,34 @@
                                               <TextField fx:id="soDienThoaiField" layoutX="183.0" layoutY="13.0" prefHeight="40.0" prefWidth="280.0" promptText="Thêm số điện thoại..." />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="54.0" layoutY="193.0" prefHeight="94.0" prefWidth="506.0" style="-fx-background-color: #73B4F1; -fx-background-radius: 5px;">
+                              <AnchorPane layoutX="54.0" layoutY="196.0" prefHeight="70.0" prefWidth="499.0" style="-fx-background-color: #73B4F1; -fx-background-radius: 5px;">
                                  <children>
-                                              <Label layoutX="44.0" layoutY="34.0" text="Địa Chỉ" textFill="WHITE">
+                                              <Label layoutX="43.0" layoutY="23.0" text="Địa Chỉ" textFill="WHITE">
                                                   <font>
                                                       <Font name="Tahoma Bold" size="18.0" />
                                                   </font>
                                               </Label>
-                                              <TextField fx:id="diaChiField" layoutX="123.0" layoutY="20.0" prefHeight="51.0" prefWidth="370.0" promptText="Thêm địa chỉ..." />
+                                              <TextField fx:id="diaChiField" layoutX="183.0" layoutY="10.0" prefHeight="51.0" prefWidth="289.0" promptText="Thêm địa chỉ..." />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="56.0" layoutY="296.0" prefHeight="50.0" prefWidth="241.0" style="-fx-background-color: #73B4F1; -fx-background-radius: 5px;">
                                  <children>
-                                              <Label layoutX="10.0" layoutY="17.0" text="Ngày Sinh">
+                                              <Label layoutX="10.0" layoutY="17.0" text="Ngày Sinh" textFill="WHITE">
                                                   <font>
                                                       <Font name="Tahoma Bold" size="13.0" />
                                                   </font>
                                               </Label>
-                                              <DatePicker fx:id="ngayVaoCongTyProperty" layoutX="80.0" layoutY="12.0" prefHeight="26.0" prefWidth="150.0" promptText="Thêm ngày vào công ty" />
+                                              <DatePicker fx:id="ngaysinhProperty" layoutX="88.0" layoutY="9.0" prefHeight="26.0" prefWidth="146.0" promptText="Thêm ngày sinh" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="133.0" layoutY="422.0" prefHeight="41.0" prefWidth="167.0" style="-fx-background-color: #73B4F1; -fx-background-radius: 5px;">
+                              <AnchorPane layoutX="57.0" layoutY="427.0" prefHeight="50.0" prefWidth="241.0" style="-fx-background-color: #73B4F1; -fx-background-radius: 5px;">
                                  <children>
-                                              <DatePicker fx:id="ngaysinhProperty" layoutX="17.0" layoutY="7.0" prefHeight="26.0" prefWidth="146.0" promptText="Thêm ngày sinh" />
+                                              <Label layoutX="14.0" layoutY="17.0" text="Ngày Vào" textFill="WHITE">
+                                                  <font>
+                                                      <Font name="Tahoma Bold" size="13.0" />
+                                                  </font>
+                                    </Label>
+                                              <DatePicker fx:id="ngayVaoCongTyProperty" layoutX="79.0" layoutY="11.0" prefHeight="26.0" prefWidth="150.0" promptText="Thêm ngày vào công ty" />
                                  </children>
                               </AnchorPane>
                                     </children>
